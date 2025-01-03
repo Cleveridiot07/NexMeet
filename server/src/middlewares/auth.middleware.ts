@@ -2,9 +2,9 @@ import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import { UserModel } from '../models/user.model'; 
 
-const auth = async (req: Request, res: Response, next: NextFunction) => {
+const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const token = req.cookies?.authToken;
+    const token = req.cookies?.token;
     if (!token) {
       return res.status(401).json({ message: 'No token, authorization denied' });
     }
@@ -26,4 +26,4 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export default auth;
+export default authMiddleware;

@@ -1,6 +1,6 @@
 import { model, Schema, Types } from "mongoose";
 
-enum SubscriptionType {
+export enum SubscriptionType {
   FREE = "FREE",
   PAID = "PAID",
 }
@@ -21,7 +21,7 @@ const userSchema = new Schema<User>(
   {
     firebaseUID: {
       type: Schema.Types.String,
-      required: true,
+      required: false,
     },
     name: {
       type: Schema.Types.String,

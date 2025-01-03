@@ -8,17 +8,11 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET || '',
 });
 
-interface CloudinaryResponse {
-  secure_url: string;
-  public_id: string;
-  [key: string]: any; 
-}
-
-const uploadOnCloudinary = async (localFilePath: string): Promise<CloudinaryResponse | null> => {
+const uploadOnCloudinary = async (localFilePath: string): Promise<string> => {
   try {
     if (!localFilePath) {
       console.error("Local file path is not provided.");
-      return null;
+      return "";
     }
 
     const fileExtension = path.extname(localFilePath).toLowerCase();
@@ -42,10 +36,10 @@ const uploadOnCloudinary = async (localFilePath: string): Promise<CloudinaryResp
       } catch (err) {
         console.error("Error deleting local file after upload:", err);
       }
-      return response;
+      return response.secure_url; // Return only the secure_url as a string.
     } else {
       console.error("Failed to get secure_url from Cloudinary response.");
-      return null;
+      return "";
     }
   } catch (error) {
     console.error("Error uploading to Cloudinary:", error);
@@ -54,7 +48,7 @@ const uploadOnCloudinary = async (localFilePath: string): Promise<CloudinaryResp
     } catch (err) {
       console.error("Error deleting local file on failure:", err);
     }
-    return null;
+    return "";
   }
 };
 

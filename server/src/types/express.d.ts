@@ -1,10 +1,15 @@
-// src/types/express.d.ts or at the root of your project
-import { User } from "../models/user.model"; // Import your user model here
+import { User } from "../models/user.model"; 
 
 declare global {
   namespace Express {
     interface Request {
-      user?: User;  // Adding the `user` property to the Request interface
+      file?: {
+        profilePicture?: Express.Multer.File[];
+      };
+      files?: {
+        [fieldname: string]: Express.Multer.File[];
+      };
+      user?: User; 
     }
   }
 }

@@ -48,7 +48,7 @@ const userSchema = new Schema<User>(
       required: true,
     },
   },
-  { timestamps: true } // Corrected line for timestamps
+  { timestamps: true } 
 );
 
 export const UserModel = model<User>("User", userSchema);

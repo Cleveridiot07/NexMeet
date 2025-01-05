@@ -3,7 +3,6 @@ import Features from "../../components/LandingPageSection/Features";
 import Footer from "../../components/LandingPageSection/Footer";
 import Hero from "../../components/LandingPageSection/Hero";
 import Pricing from "../../components/LandingPageSection/Pricing";
-import Testimonials from "../../components/LandingPageSection/Testimonials";
 
 export default function LandingPage() {
   return (

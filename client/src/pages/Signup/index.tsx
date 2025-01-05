@@ -13,23 +13,15 @@ export default function SignupPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (
     <div className="flex h-screen justify-center items-center bg-sky-950">
-      <div className="min-h-[90vh] w-[80vw] grid lg:grid-cols-2">
-        {/* Left Section */}
-        <div className="relative hidden lg:block bg-[#051b2c]">
-          <div className="absolute inset-0">
-            <img
-              src="/placeholder.svg?height=600&width=600"
-              alt="Abstract Decoration"
-              className="object-cover opacity-20"
-            />
-          </div>
-        </div>
+      <div className="min-h-[90vh] w-[80vw] grid lg:grid-cols-1">
+      
+
 
         {/* Right Section - Sign Up Form */}
-        <div className="flex bg-gray-200 items-center justify-center p-8">
+        <div className="flex bg-gray-200 items-center rounded-3xl justify-center p-8">
           <div className="w-full max-w-md space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl text-gray-50 font-bold">Create your account</h2>
+              <h2 className="text-3xl text-gray-950 font-bold">Create your account</h2>
               <p className="mt-2 text-muted-foreground">
                 Get started with VideoCall today
               </p>
@@ -139,7 +131,7 @@ export default function SignupPage() {
 
               <p className="text-center text-sm text-muted-foreground">
                 Already have an account?{" "}
-                <Link href="/login" className="text-[#0a5a8a] hover:underline">
+                <Link href="/login" className="text-[#8d9295] hover:underline">
                   Sign in
                 </Link>
               </p>

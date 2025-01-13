@@ -6,7 +6,7 @@ import { uploadOnCloudinary } from "../services/cloudinary";
 import { validationResult } from "express-validator";
 
 export const registerUser = async (req: Request, res: Response) => {
-  const profilePicture = req.file?.profilePicture?.[0].path;
+  const profilePicture = req.file?.path;
   const { name, email, password, firebaseUID } = req.body;
 
   try {
@@ -101,7 +101,7 @@ export const loginUser = async (req: Request, res: Response) => {
 };
 
 export const editUser = async (req: Request, res: Response) => {
-  const profilePicture = req.file?.profilePicture?.[0].path;
+  const profilePicture = req.file?.path;
   const { name, email, password, firebaseUID } = req.body;
   try {
     let user = await UserModel.findById(req.user.id);

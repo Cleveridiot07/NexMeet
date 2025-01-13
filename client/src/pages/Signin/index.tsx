@@ -1,92 +1,153 @@
 "use client";
 
-import { Lock, Mail, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
-
-import { Button } from "../../components/Common Components/Button";
-import { Input } from "../../components/Common Components/Input";
-import { Label } from "../../components/Common Components/Label";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { Suspense } from "react";
+import VideoCallModel from "../../components/LandingPageSection/VideoCallModel";
 
-export default function SigninPage() {
+export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle sign in logic here
+    console.log("Sign in:", { email, password });
+  };
 
   return (
-    <div className="flex h-screen justify-center items-center bg-sky-950">
-      <div className="min-h-[90vh] w-[80vw] grid lg:grid-cols-1">
-        {/* Right Section - Login Form */}
-        <div className="flex bg-gray-200 items-center rounded-3xl justify-center p-8">
-          <div className="w-full max-w-md space-y-8">
-            <div className="text-center">
-              <h2 className="text-3xl text-gray-950 font-bold">Welcome Back</h2>
-              <p className="mt-2 text-muted-foreground">
-                Sign in to your VideoCall account
-              </p>
-            </div>
+    <div className="flex min-h-screen">
+      {/* Left Section with Image */}
+      <div className="hidden w-1/2 relative bg-sky-950 lg:block">
+        <Canvas>
+          <PerspectiveCamera makeDefault position={[0, 0, 5]} />
+          <OrbitControls enableZoom={false} enablePan={false} />
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <Suspense fallback={null}>
+            <VideoCallModel />
+          </Suspense>
+        </Canvas>
+        <div className="absolute inset-0 bg-sky-950 bg-opacity-50" />
+      </div>
 
-            <form className="space-y-6">
-              <div className="space-y-4">
-                <div>
-                  <Label className="mb-1" htmlFor="email">Email address</Label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-muted-foreground">
-                      <Mail className="h-5 w-5" />
-                    </div>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      className="pl-10"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                </div>
+      {/* Right Section with Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
+        <div className="w-full max-w-md space-y-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900">Welcome back</h2>
+            <p className="mt-2 text-gray-600">Please sign in to your account</p>
+          </div>
 
-                <div>
-                  <Label className="mb-1" htmlFor="password">Password</Label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-muted-foreground">
-                      <Lock className="h-5 w-5" />
-                    </div>
-                    <Input
-                      id="password"
-                      name="password"
-                      type={showPassword ? "text" : "password"}
-                      required
-                      className="pl-10 pr-10"
-                      placeholder="Enter your password"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute inset-y-0 right-3 flex items-center text-muted-foreground hover:text-foreground"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="h-5 w-5" />
-                      ) : (
-                        <Eye className="h-5 w-5" />
-                      )}
-                    </button>
+          <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+            <div className="space-y-4">
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Email address
+                </label>
+                <div className="mt-1 relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Mail className="h-5 w-5 text-gray-400" />
                   </div>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-sky-950 focus:border-sky-950 sm:text-sm"
+                    placeholder="Enter your email"
+                  />
                 </div>
               </div>
 
-              <Button
-                type="submit"
-                className="w-full bg-[#0a5a8a] hover:bg-[#074a73]"
-              >
-                Sign In
-              </Button>
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Password
+                </label>
+                <div className="mt-1 relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Lock className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete="current-password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-sky-950 focus:border-sky-950 sm:text-sm"
+                    placeholder="Enter your password"
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-5 w-5 text-gray-400" />
+                    ) : (
+                      <Eye className="h-5 w-5 text-gray-400" />
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
 
-              <p className="text-center text-sm text-muted-foreground">
-                Don’t have an account?{" "}
-                <Link href="/signup" className="text-sky-700 hover:underline">
-                  Create one
-                </Link>
-              </p>
-            </form>
-          </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  className="h-4 w-4 text-sky-950 focus:ring-sky-950 border-gray-300 rounded"
+                />
+                <label
+                  htmlFor="remember-me"
+                  className="ml-2 block text-sm text-gray-700"
+                >
+                  Remember me
+                </label>
+              </div>
+
+              <Link
+                to="/forgot-password"
+                className="text-sm font-medium text-sky-950 hover:text-sky-950/80"
+              >
+                Forgot password?
+              </Link>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-950 hover:bg-sky-950/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-950"
+            >
+              Sign in
+            </button>
+          </form>
+
+          <p className="text-center text-sm text-gray-600">
+            Don't have an account?{" "}
+            <Link
+              to="/signup"
+              className="font-medium text-sky-950 hover:text-sky-950/80"
+            >
+              Sign up
+            </Link>
+          </p>
         </div>
       </div>
     </div>

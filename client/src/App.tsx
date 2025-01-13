@@ -1,19 +1,27 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/LandingPage/index';
-import SignupPage from './pages/Signup/index';
-import VideoCall from './components/Test/Test';
-import SigninPage from './pages/Signin';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage/index";
+import SignupPage from "./pages/Signup/index";
+import SigninPage from "./pages/Signin";
+import VideoCallPage from "./pages/VideoCall/index";
+import { DailyProvider } from "@daily-co/daily-react";
+
+
+
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<SigninPage />} />
-        <Route path="/test" element={<VideoCall roomUrl='' />} />
-      </Routes>
-    </Router>
+    <DailyProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<SigninPage />} />
+          <Route path="/videocall" element={<VideoCallPage />} />
+          {/* <Route path="/custom" element={<CustomVideoCall roomUrl="https://iview.daily.co/gv3NoQo5odAIqiybYidQ" />} /> */}
+
+        </Routes>
+      </Router>
+    </DailyProvider>
   );
 }
 

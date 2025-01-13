@@ -49,7 +49,7 @@ export default function Pricing() {
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {pricingPlans.map((plan, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div key={index} className="bg-white p-8 rounded-sm shadow-sm hover:shadow-md transition-shadow duration-300">
               <div className="text-2xl text-sky-700 font-bold mb-2">{plan.name}</div>
               <div className="text-gray-600 mb-4">{plan.description}</div>
               <div className="text-3xl text-sky-700 font-bold mb-4">{plan.price}</div>
@@ -58,7 +58,7 @@ export default function Pricing() {
                   <li key={featureIndex}>• {feature}</li>
                 ))}
               </ul>
-              <Button className="w-full bg-sky-900 text-gray-200 rounded-full">
+              <Button className="w-full bg-sky-900 text-gray-200 rounded-sm">
                 {plan.name === 'Enterprise' ? 'Contact Sales' : 'Get Started'}
               </Button>
             </div>

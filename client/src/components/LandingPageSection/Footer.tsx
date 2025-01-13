@@ -37,7 +37,7 @@ export default function Footer() {
                 <Input
                   id="name"
                   placeholder="Enter your name"
-                  className="rounded-lg"
+                  className="rounded-sm"
                   required
                 />
               </div>
@@ -48,7 +48,7 @@ export default function Footer() {
                   id="email"
                   type="email"
                   placeholder="Enter your email"
-                  className="rounded-lg"
+                  className="rounded-sm"
                   required
                 />
               </div>
@@ -59,7 +59,7 @@ export default function Footer() {
                   id="phone"
                   type="tel"
                   placeholder="Enter your phone number"
-                  className="rounded-lg"
+                  className="rounded-sm"
                   required
                 />
               </div>
@@ -69,7 +69,7 @@ export default function Footer() {
                 <Textarea
                   id="message"
                   placeholder="Type your message here"
-                  className="rounded-lg min-h-[120px]"
+                  className="rounded-sm min-h-[120px]"
                   required
                 />
               </div>

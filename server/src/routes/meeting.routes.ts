@@ -12,7 +12,7 @@ router.post(
 );
 
 router.post(
-  "/meetingToken",
+  "/meetingtoken",
   asyncHandler(authMiddleware),
   asyncHandler(generateMeetingToken)
 );

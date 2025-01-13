@@ -60,8 +60,10 @@ export const generateMeetingToken = async (req: Request, res: Response) => {
     return res.status(500).json({ message: "Room name is required" });
   }
   const formdata = {
-    room_name : roomName,
-    isowner: "true",
+    properties: {
+      room_name: roomName,
+      is_owner: "true",
+    },
   };
   // Retrieve the Bearer token from environment variables
   const bearerToken = process.env.DAILY_CO_AUTHORIZATION_TOKEN;
@@ -73,7 +75,7 @@ export const generateMeetingToken = async (req: Request, res: Response) => {
   }
   try {
     const response = await axios.post(
-      `${process.env.DAILY_CO_URL}/rooms`,
+      `${process.env.DAILY_CO_URL}/meeting-tokens`,
       formdata,
       {
         headers: {
@@ -83,16 +85,15 @@ export const generateMeetingToken = async (req: Request, res: Response) => {
     );
 
     // Log the necessary response data to check the structure
-    console.log(response.data);
+    console.log("Test",response.data);
 
-    // Return only the required data (e.g., room ID and URL) and avoid sending the full response object
     return res.status(200).json({
-      roomUrl: response.data.url,
-      roomId: response.data.id,
+      token: response.data.token,
     });
   } catch (err) {
-    console.error("Error in Creating Room", (err as any)?.response.data);
-    const responseError = (err as any)?.response.data;
-    return res.status(500).json(responseError);
+    console.error("Error in Creating Room Token", err);
+    return res.status(500).json({
+      message: "Error in Creating Room Token",
+    });
   }
 };

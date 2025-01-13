@@ -8,6 +8,7 @@ export default function VideoCallModel() {
   const meshRef = useRef<Mesh>(null!)
 
   useFrame((state, delta) => {
+    state;
     meshRef.current.rotation.x += delta * 0.2
     meshRef.current.rotation.y += delta * 0.3
   })

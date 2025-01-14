@@ -12,8 +12,11 @@
   "dependencies": {
     "@daily-co/daily-js": "^0.74.0",
     "@daily-co/daily-react": "^0.22.0",
+    "@radix-ui/react-avatar": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.1.4",
     "@react-three/drei": "^9.120.5",
     "@react-three/fiber": "^8.17.10",
+    "class-variance-authority": "^0.7.1",
     "jotai": "^2.11.0",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",

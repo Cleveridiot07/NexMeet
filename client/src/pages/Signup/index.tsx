@@ -28,7 +28,7 @@ export default function SignUpPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle sign up logic here
+    
     console.log("Sign up:", formData);
   };
 
